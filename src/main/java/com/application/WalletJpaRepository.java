@@ -36,12 +36,4 @@ public interface WalletJpaRepository extends JpaRepository<WalletJpaDto,Integer>
 
     @Query("SELECT wallet FROM WalletJpaDto wallet WHERE wallet.id > :id")
     List<WalletJpaDto> getAllWalletsHavingIdGreaterThan(Integer id);
-
-
-
-
-
-
-
-
 }
