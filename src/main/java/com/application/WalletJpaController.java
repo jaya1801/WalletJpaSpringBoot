@@ -46,7 +46,7 @@ public class WalletJpaController {
 
     @PatchMapping("/wallet/{walletId}/addFund/{amount}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    Double addFundsToWalletById(@PathVariable Integer walletId, @PathVariable Double amount) throws WalletJpaException {
+    Double addFundsToWalletById(@PathVariable("walletId") Integer walletId, @PathVariable("amount") Double amount) throws WalletJpaException {
         return walletJpaService.addFundsToWalletById(walletId, amount);
     }
 
@@ -129,19 +129,19 @@ public class WalletJpaController {
     }
 
     @GetMapping("/custom/wallets/name/{name}")
-    public List<WalletJpaDto> getAllWalletsHavingNameLike(String name){
+    public List<WalletJpaDto> getAllWalletsHavingNameLike(@PathVariable("name") String name){
 
-        return this.walletJpaRepository.getAllWalletsHavingNameLike("%"+name+"%");
+        return this.walletJpaRepository.getAllWalletsHavingNameLike("%" + name + "%");
     }
 
-    @GetMapping("/custom/wallets/name/{name}/sorted")
-    public List<WalletJpaDto> getAllWalletsHavingOrderByName(String name){
-        return this.walletJpaRepository.getAllWalletsHavingOrderByName(name);
+    @GetMapping("/custom/wallets/name/sorted")
+    public List<WalletJpaDto> getAllWalletsHavingOrderByName(){
+        return this.walletJpaRepository.getAllWalletsHavingOrderByName();
     }
 
-    @GetMapping("/custom/wallets/balance/{balance}/sorted")
-    public List<WalletJpaDto> getAllWalletsHavingBalanceOrderByBalance(Double balance){
-        return this.walletJpaRepository.getAllWalletsHavingBalanceOrderByBalance(balance);
+    @GetMapping("/custom/wallets/balance/sorted")
+    public List<WalletJpaDto> getAllWalletsHavingBalanceOrderByBalance(){
+        return this.walletJpaRepository.getAllWalletsHavingBalanceOrderByBalance();
     }
 
     @GetMapping("/custom/wallets/{id}/greaterThanId")

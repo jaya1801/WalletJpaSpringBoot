@@ -55,6 +55,7 @@ public class WalletJpaServiceImpl implements WalletJpaService {
         Double balance = walletOptional.get().getBalance();
         //walletOptional.setBalance(balance+amount);
         walletOptional.equals(balance+amount);
+
         return balance+amount;
 
     }

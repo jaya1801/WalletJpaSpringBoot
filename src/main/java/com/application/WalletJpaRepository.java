@@ -20,6 +20,7 @@ public interface WalletJpaRepository extends JpaRepository<WalletJpaDto,Integer>
     List<WalletJpaDto> findByNameStartingWith(String name);
     List<WalletJpaDto> findByNameEndingWith(String name);
     List<WalletJpaDto> findByNameIsNot(String name);
+
     // By writing JPQL Queries
     @Query("SELECT wallet FROM WalletJpaDto wallet")
     List<WalletJpaDto> getAllWallets();
@@ -27,11 +28,11 @@ public interface WalletJpaRepository extends JpaRepository<WalletJpaDto,Integer>
     @Query("SELECT wallet FROM WalletJpaDto wallet WHERE wallet.name LIKE :name")
     List<WalletJpaDto> getAllWalletsHavingNameLike(String name);
 
-    @Query("SELECT wallet FROM WalletJpaDto wallet ORDER BY wallet.name")
-    List<WalletJpaDto> getAllWalletsHavingOrderByName(String name);
+    @Query("SELECT wallet FROM WalletJpaDto wallet ORDER BY wallet.name ASC")
+    List<WalletJpaDto> getAllWalletsHavingOrderByName();
 
-    @Query("SELECT wallet FROM WalletJpaDto wallet ORDER BY wallet.balance")
-    List<WalletJpaDto> getAllWalletsHavingBalanceOrderByBalance(Double balance);
+    @Query("SELECT wallet FROM WalletJpaDto wallet ORDER BY wallet.balance ASC")
+    List<WalletJpaDto> getAllWalletsHavingBalanceOrderByBalance();
 
     @Query("SELECT wallet FROM WalletJpaDto wallet WHERE wallet.id > :id")
     List<WalletJpaDto> getAllWalletsHavingIdGreaterThan(Integer id);
